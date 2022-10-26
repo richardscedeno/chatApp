@@ -1,0 +1,744 @@
+CREAR UN APP DE CHAT CON EL SERVICIO DE FIREBASE
+
+npx create-expo-app chatApp
+cd chatApp
+npm start -> ejecutar en emulador de peferencia
+
+SCREENS
+Creamos la carpeta llamada screens que contendrá las vistas de la app
+  Login.js -> Página parainiciar sesión
+  Signup.js -> Página para registrar 
+  Home.js -> Página de inicio
+  Chat.js -> Página de chat
+
+
+
+
+
+-> PAGE LOGIN
+  agregamos la imagende fondo llamada "background.jpg" a la carpeta de assets
+  Cramos la funcion Login que por elmomento devuelve un texto "Login page", para poder devolver el texto, tenemos que importat "Text" desde 'reac-native'
+
+
+
+
+-> APP.JS
+  Eliminamos los estilos e importamos la página "Login.jsx" para ver si está funcionando
+
+
+
+
+-> LOGIN:JSX
+  import { Image, Text, View, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from "react-native"
+import backimg from '../assets/background.jpg'
+
+export const Login = () => {
+  return (
+    <View style={styles.container}>
+      <Image source={backimg} />
+      <Text style={styles.title}>Welcome</Text>
+      <View style={styles.whiteSheet}>
+        <SafeAreaView style={styles.form}>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter email" 
+            autoCapitalize="none"
+            keyboardType="email-address"
+            textContentType="emailAddress"
+            autoFocus={true}
+            // value={email}
+            // onChange={() => }
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter password" 
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry={true}
+            textContentType="password"
+            // value={email}
+            // onChange={() => }
+          />
+
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.textButton}>Login</Text>
+          </TouchableOpacity>
+
+          <View style={styles.footer}>
+            <Text style={styles.dontAcount}>Don't have an account?</Text>
+
+            <TouchableOpacity>
+              <Text style={styles.signUp}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </View>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  title: {
+    position: 'absolute',
+    top: '15%',
+    left: '30%',
+    color: '#000',
+    fontSize: 40,
+    fontWeight: 'bold'
+  },
+  whiteSheet: {
+    width: '80%',
+    height: '60%',
+    backgroundColor: '#fff',
+    position: 'absolute',
+    // bottom: 0,
+    top: '25%',
+    left: '10%',
+    borderRadius: 60 
+  },
+  form: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 30,
+  },
+  input: {
+    backgroundColor: '#f6f7fb',
+    height: 58,
+    marginBottom: 20,
+    fontSize: 16,
+    borderRadius: 10,
+    padding: 12,
+  },
+  button: {
+    backgroundColor: '#67e48c',
+    height: 58,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  textButton: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff'
+  },
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  dontAcount: {
+    color: 'gray',
+    fontWeight: '600',
+    fontSize: 14
+  },
+  signUp: {
+    color: '#67e48c',
+    fontWeight: '600',
+    fontSize: 14
+  }
+})
+
+
+
+
+-> SIGNUP.JSX
+import { Image, Text, View, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from "react-native"
+import backimg from '../assets/background.jpg'
+
+export const Signup = () => {
+  return (
+    <View style={styles.container}>
+      <Image source={backimg} />
+      <Text style={styles.title}>Register</Text>
+      <View style={styles.whiteSheet}>
+        <SafeAreaView style={styles.form}>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter email" 
+            autoCapitalize="none"
+            keyboardType="email-address"
+            textContentType="emailAddress"
+            autoFocus={true}
+            // value={email}
+            // onChange={() => }
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter password" 
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry={true}
+            textContentType="password"
+            // value={email}
+            // onChange={() => }
+          />
+
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.textButton}>Sign up</Text>
+          </TouchableOpacity>
+
+          <View style={styles.footer}>
+            <Text style={styles.dontAcount}>Don't have an account?</Text>
+
+            <TouchableOpacity>
+              <Text style={styles.signIn}>Log In</Text>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </View>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  title: {
+    position: 'absolute',
+    top: '15%',
+    left: '30%',
+    color: '#000',
+    fontSize: 40,
+    fontWeight: 'bold'
+  },
+  whiteSheet: {
+    width: '80%',
+    height: '60%',
+    backgroundColor: '#fff',
+    position: 'absolute',
+    // bottom: 0,
+    top: '25%',
+    left: '10%',
+    borderRadius: 60 
+  },
+  form: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 30,
+  },
+  input: {
+    backgroundColor: '#f6f7fb',
+    height: 58,
+    marginBottom: 20,
+    fontSize: 16,
+    borderRadius: 10,
+    padding: 12,
+  },
+  button: {
+    backgroundColor: '#67e48c',
+    height: 58,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  textButton: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff'
+  },
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  dontAcount: {
+    color: 'gray',
+    fontWeight: '600',
+    fontSize: 14
+  },
+  signIn: {
+    color: '#67e48c',
+    fontWeight: '600',
+    fontSize: 14
+  }
+})
+
+
+
+
+-> HOME.JSX
+Creamos la funcion, agregamos una "View" dentro de un "TouchableOpacity"
+agregamos un "Entypo" que importamos desde '@expo/vector-icons'
+agregamos sus estilos
+
+agregamos un "useEffect"
+instalamos '@react-navigation/native' -> para poder usar un heder que tiene navigation
+importamos { useNavigation } desde '@react-navigation/native'
+creamos una constante llamada 'navigation'= useNavigation()
+dentro el useEffect seteamos todo y hacemos uso del setOption que nos provee el headerLeft y el headerRight y agregamos los estilos
+
+Nos dará un error dentro de 'NavigationContainer'
+
+-> APP.JS 
+para soluciona el error
+instalamos con npm install
+instalamos '@react-navigation/stack'
+importamos { NavigationContainer } from '@react-navigation/native'
+importamos { createStackNavigator } from '@react-navigation/stack'
+
+creamos un Stack = createStackNavigator() -> 2 stack: uno para iniciar sesion y el otro para mandarlo a home si es que ya tiene la sesion activa
+
+creamos la funcion ChatStack()
+
+quedando app.js de la siguiente manera:
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import { Home } from './screens/Home';
+import { Login } from './screens/Login';
+import { Signup } from './screens/Signup'
+
+const Stack = createStackNavigator()
+
+const ChatStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Home" component={Home}/>
+    </Stack.Navigator>
+  )
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <ChatStack />
+    </NavigationContainer>
+  )
+}
+
+
+
+
+-> HOME.JSX
+Ya solucionado el error de 'NavigationContainer'
+regresamos para seguir con el diseño
+añadiendo el headerRight y sus elementos hijos quedando de la siguiente manera:
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native"
+import { Entypo, FontAwesome } from '@expo/vector-icons'
+import { useNavigation } from "@react-navigation/native"
+import { useEffect } from "react"
+const urlImg = "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+
+export const Home = () => {
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <FontAwesome name="search" style={styles.search} />
+      ),
+      headerRight: () => (
+        <Image source={{ uri: urlImg }} style={styles.img}/>
+      )
+    })
+  }, [navigation]);
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.chatButton}>
+        <Entypo name="chat" style={styles.chat} />
+      </TouchableOpacity>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    // backgroundColor: "#fff"
+  },
+  chat: {
+    fontSize: 28,
+    color: '#fff'
+  },
+  chatButton: {
+    backgroundColor: 'green',
+    height: 50,
+    width: 50,
+
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    shadowColor: 'red',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: .9,
+    shadowRadius: 8,
+    marginRight: 20,
+    marginBottom: 20
+  },
+  search: {
+    fontSize: 24,
+    color: 'green',
+    marginLeft: 15
+  },
+  img: {
+    width: 40,
+    height: 40,
+    marginRight: 15,
+    borderRadius: 50
+  }
+})
+
+
+
+-> LOGIN.JSX
+Agregaremos la navegacion entre ventanas, desde logn a signup y viseversa
+Para eso tenemos que instalar los paquetes
+npx expo install react-native-screens
+npx expo install react-native-safe-area-context
+npx expo install react-native-gesture-handler
+agregamos en TouchableOpacity onPress={() => navigation.navigate("Singup")
+
+
+
+-> SIGNUP.JSX
+agregamos en TouchableOpacity onPress={() => navigation.navigate("Login")
+
+
+-> APP.JS 
+modificamos ChatStack para que pueda comunicarse quedando así
+const ChatStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Login" component={Login}/>
+      <Stack.Screen name="Singup" component={Signup}/>
+    </Stack.Navigator>
+  )
+}
+
+
+
+-> CREAMOS SCREEN LLAMADA CHAT.JSX
+importamos chat dentro de app.js para poder visualizar
+Dentro solo retornamos una vista de prueba
+import { View, Text } from "react-native"
+
+export const Chat = () => {
+  return (
+    <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+      <Text>Chat Screen</Text>
+    </View>
+  )
+}
+
+
+-> HOME.JSX
+agregamos un onPress que redirija a la pantalla de chat
+Agregamos Home a ChatStack para probar y listo
+
+
+
+
+
+
+-> FIREBASE | Navegador
+Crear una cuenta si no tienen una
+click en el apartado "comenzar" no redirige a la consola y creamos un nuevo proyecto
+nuew project chatApp
+desactivar google analitics poque solo es un tutorial y presinamos en crear
+
+ACTIVAR LOS SERVICIOS EN COMPLACIÓN
+Autenticacion el primer servicio que se va a utilizar -> Habilitamos el de correo y contraseña -> save
+Settings -> Configuracion del proyecto -> Agregar app (web porque se utiliza react native)
+Ingresamos un nombre (my-chatApp) -> registrar -> Devuelve las configuracion para conectar con nuestra app con el backend en firebase que acabamos de crear :
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDzuiCky83Pv1_kZ2U5YCe7ImrU6e19Ubo",
+  authDomain: "chatapp-29882.firebaseapp.com",
+  projectId: "chatapp-29882",
+  storageBucket: "chatapp-29882.appspot.com",
+  messagingSenderId: "75923897414",
+  appId: "1:75923897414:web:5acf4292ea648e1fdede47"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+
+
+
+FIRESTORE DATABASE
+En la consola de firebaase -> Firetore database
+Creamos la base de datos -> start in test mode -> next -> seleccionar server
+
+
+
+
+
+-> CREAR ARCHIVO .ENV QUE CONTIENE TODAS LAS VARIABLES
+API_KEY=AIzaSyDzuiCky83Pv1_kZ2U5YCe7ImrU6e19Ubo
+AUTH_DOMAIN=chatapp-29882.firebaseapp.com
+PROJECT_ID=chatapp-29882
+STORAGE_BUCKET=chatapp-29882.appspot.com
+MESSAGING_SENDER_ID=75923897414
+APP_ID=1:75923897414:web:5acf4292ea648e1fdede47
+
+agregar .env a .gitignore para que no suba las llaves a github
+
+
+
+
+
+
+-> CONFIGURACION DE FIREBASE
+Crear carpeta "Config" dentro un archivo llamado firebase.js
+npx expo install firebase -> instalar firebase
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
+import { variables de dotenv } from '@env'
+
+const firebaseConfig = {
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID
+};
+// inicializamos firebase
+initializeApp(firebaseConfig)
+export const auth = getAuth();
+export const database = getFirestore();
+
+
+
+
+
+
+-> DOTENV
+instalar $ npm install -D react-native-dotenv -> par acceder a las variables de entorno
+https://github.com/goatandsheep/react-native-dotenv
+en babel.config.js debajo de presets: [] agragamos
+plugins: [
+    ["module:react-native-dotenv", {
+      "envName": "APP_ENV",
+      "moduleName": "@env",
+      "path": ".env",
+    }]
+  ]
+
+Ya podemos usar las variales de entorno desde donde queramos importandolas de la siguente manera:
+import { varNameEnv, BASE_URL } from '@env'
+baeUrl: BASE_URL
+
+
+
+
+
+-> LOGIN.JSX
+Validamos el inicio de sesion implementando la funcion handleLogin
+creamos 2 estados "email" and "password"
+agregamos el "value" and onChange en los "TextInput"
+corremos la app y nos mostrará un error de 'idb' de metro
+Resolvemos agregando el archivo metro.config.js en la raíz
+verificaos quedando el handleLogin así: 
+const handleLogin = () => {
+    if (email !== '' && password !== '') {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => console.log('success'))
+        .catch(err => Alert.alert('Login error', err.message))
+    }else {
+      let desc = 'Ingrese las credenciales'
+      Alert.alert('Login Error', desc)
+    }
+  }
+
+
+
+
+
+-> SIGNUP.JSX
+Para poder iniciar sesion, tenemos que registrarnos primero
+creamos 2 estados "email" and "password"
+agregamos la funcion para registrarnos
+agregamos el "value" and "onchangeText" a los TextInput
+agregamos el en el boton Singup la funcion dentro del onPress
+
+Varificamos si está registrando correctamente
+nos dirigimos a firebase para asegurarnos que no tenemos datos registrados
+Registramos un valor nulo primero
+Luego registramos un valor correcto y verificamos que todo esté correcto
+
+
+
+
+
+
+
+CONTEXT API 
+usar para compartir datos que son consderados globales entre los componentes que tenemos en react 
+Cuando se crea un contexto, es necesario pasarle un valor por defecto, para cuando no teienen un PROVIDER
+PROVIDER permite subscribir a un contexto que nos permite saber si un usuario está o no logueado
+
+Creamos nuestro contexto
+creamos una carpeta llamada 'Context' con un archivo llamado 'AuthContext.jsx'
+creamos el contexto 'AuthContext' y lo inicializamos como un objeto vacío, ya que va a contener el usuario mas adelante.
+
+Creamos el provider que va a recibir una children
+creamon un estado para el usuario y lo inicializamos en null
+retornamos el provider
+
+
+
+
+
+MODIFICAMOS NUESTRA NAVEGACION
+creamos una carpeta llamada 'Navigation' y un archivo llamado 'Navigate.jsx'
+copiamos la funcion de ChatStack y la pegamos en 'navigate.jsx'
+Agregamos 'Home' Como default
+actualizamos las rutas de las importacionses
+
+Creamos un stack para la autenticacion llamado AuthStack
+contiene los componentes Login y Signup siendo el componente Login el por defecto
+importamos los componentes y sus rutas
+
+Para dar seguridad a la aplicaion, si no tiene logueado no puede acceder a la aplicación.
+Pero si ya estpa logueado, lo redirigue a home directamente
+
+
+
+
+
+CREAMS EL ROOTNAVIGATOR
+contiene un user que lo igualamos al contexto
+un estado loading
+y un efecto
+el efecto contiene una funcion unSubscribe que la igualamos al la funcion de firebase onAuthStateChanged()
+la funcion de firebase recibe un auth y una funcion para verificar si el usuario existe o no, si existe lo seteamoa l contexto y como se utiliza el contexto, toda la aplicaion que esté dentro del Provider sabrá los datos
+
+
+Si no está cargando regresa un stack dentro del 'NavigationContainer' para que funcione y podemos eliminarlo de app.js
+
+
+
+
+-> APP.JS
+Retornamos el 'AuthProvider' y dentro de ese provider le pasamos como children nuesto 'RootNavigator'
+
+
+
+
+
+PROBAMOS EL FUNCIONAMIENTO DE LA APP
+Creamos un usuario y nos redirige al home, porque ya existe un usuario.
+Cerramos el app, y la volvemos abrir, y como ya tiene un usuario asignado, nos va a redirigir a home directamente, entonces crearemos un logout
+
+
+
+
+-> HOME.JSX LOGOUT 
+creamos la funcion handleLogout()
+importando lo necesario de firebase en este caso la funcion 'signOut() y auth que tiene que ir com parámetro
+
+creamos la constante 'navigation' igualada a useNavigation()
+Reemplazamos el icono del gato que teníamos antes
+// Pendiente centrar el título de ls screen Home
+
+
+
+
+-> CHAT.JSX
+Creacion del chat
+instalamosl paquete de github
+npm install react-native-gifted-chat
+https://github.com/FaridSafi/react-native-gifted-chat
+Dependencia que nos permite hacer nuestor chat de manera fácil, ya que es un ui, que ya incluye el TextInput
+Solo se tiene que escribir el mensaje que queremis enviar, y nospermite enviat location, fotos, etc
+ui que nos va a permitir hacer nuestro chat de manera fácil.
+
+importamos { GiftedChat } from 'react-native-gifted-chat'
+Nos permite ver todos los mensajes que van a ser usados por todos los usuarios que esten usando el chat 
+retornamos el GiftedChat como un elemento
+
+Comenzamos agregando un estado llamano 'message'
+Agregamos un useLayoutEffec() -> para traer los mensajes de la base de datos y agregarlos a nuestro arreglo de mensajes
+dentro una constante que la igualamso a 'collection()' que viene de 'firebase/firestore'
+dentro de colletion() en pocas palabras le decimos que se conecte a nuestra base de datos 'database' que tambien viene de 'config/firebase'
+collection(database, 'chats') -> Se conecta a la base de datos específicamente al la tabla o campo 'chats'
+
+Agregamos un query de referencia 'query' tambien viene de 'firebase/firestore'
+dentro de la query le pasamos la referencia y el ordend de creacion de los mensajes
+Para el orden pasamos 'orderBy' qe viene de 'firebase/firestore'
+
+escuchar cuando un evento ocurra en la tabla, en este caso cuando se envie un nuevo mensaje, para el listener hacemos uso de onSnapshot()
+creamos una constante igualada al listener onSnapshot()
+el listener recibe la query y el snacpshot que está pasando
+
+Luego seteamos los mensajes con la funcio serMessage()
+dentro del set se itera cada snapshot.doc porque esa es la estructura del arreglo que se está recibiendo yluego se mapea
+quedando snapshot.docs.map() entonces por cada doc seteamos el '_id, createdAt, text, user
+
+Despues de setear todo, retornamos el unSubscribe() 
+y poner los corchetes para que no esté haciendo peticiones a cada rato
+
+
+
+
+Creamos una constante onSend igualada al hook useCallback() de react que lo que hace es memorizar la version o parte de los mensajes que ya tenía
+así de esa manerano se vulven a cargar todos. 
+Se le pasa un arreglo de mensajes
+
+setea los memsajes nuevamente por cada previos mensajes, agregamos los previos mensajes más los mensajes que se entaan enviando ahorita 'DM' mensajes directos
+eso gracias a la funcion 'append' que tiene GiftedChat
+
+
+desestructuramos las variables des el mensaje direncto en la posicion 0
+hacemos uso de addDoc() de 'firebase/firestore' le pasamos la collecion y dentoe de ella la base de taot y el campo o tabla a la que van a ser agregados las variables antes desestructuradas
+agregar los parensis al terminar la funcion de useCallback
+
+Agregamos los parámetros que necesita GiftedChat
+
+Fnalmente algregamos los estilos
+GiftedChat tiene una propiedad que se llama messagesContainerStyle donde sepuede colocal los estilos
+un fondo blanco para que se puede diferenciar el fondo del mensaje de otros ususarios, con el fondo de la pantalla chat
+
+Pero como gifted deja un margen arriba
+gregamos un View que encapsule a GiftedChat y a ese view le añadimos estilos, flex:1, y backgroundColor: '#fff'
+el fondo tiene que ser el mismo color que le añadimos al fondo de GiftedChat
+
+
+Probar y listo, está funcionando al 100%
+
+DEPENDENCIAS A INSTALAR
+dependencias de react-native
+instalar con npm install dependencia
+@react-navigation/native
+@react-navigation/stack
+react-native-gifted-chatApp
+https://github.com/FaridSafi/react-native-gifted-chat
+ui que nos va a permitir hacer nuestro chat de manera fácil.
+
+dependencias de expo
+expo install dependencia
+firebase
+expo-contains -> Permite utilizar las variables de entornos dotenv donde estaran las credenciales para conectar con el backend en firebase
+dotenv -> cambiaremos por react-native-env
+react-native-gesture-handler
+react-native-screens
+react-native-safe-area-context
+@react-native-community/masked-view
+
